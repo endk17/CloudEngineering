@@ -64,7 +64,7 @@ az vm availability-set create --name $AvailabilitySet \
                               --resource-group $ResourceGroupName \
                               --location $Location
 
-# Create 4 virtual machines.
+# Create 4 virtual machiness
 az vm create \
     --resource-group $ResourceGroupName \
     --availability-set $AvailabilitySet \
