@@ -4,7 +4,7 @@
 az
 az login
 
-#Update based on your organizational requirements
+#Define Lab Enviornment
 Location=northeurope
 ResourceGroupName=EKAzLab
 NetworkSecurityGroup=NSG-EKAzLab
@@ -21,10 +21,10 @@ DomainController1=AZDC01
 DC1IP=10.10.10.11
 DomainController2=AZDC02
 DC2IP=10.10.10.12
-DomainController3=AZADFS01
-DC3IP=10.10.10.13
-DomainController4=AZCA01
-DC4IP=10.10.10.14
+DomainADFS=AZADFS01
+ADFS01IP=10.10.10.13
+DomainCertAuthority=AZCA01
+CA01IP=10.10.10.14
 
 # Create a resource group.
 az group create --name $ResourceGroupName \
@@ -96,7 +96,7 @@ az vm create \
 az vm create \
     --resource-group $ResourceGroupName \
     --availability-set $AvailabilitySet \
-    --name $DomainController3 \
+    --name $DomainADFS \
     --size $VMSize \
     --image Win2019Datacenter \
     --admin-username $AdminUsername \
@@ -104,13 +104,13 @@ az vm create \
     --data-disk-sizes-gb $DataDiskSize \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
-    --private-ip-address $DC3IP
+    --private-ip-address $ADFS01IP
     --no-wait
 
 az vm create \
     --resource-group $ResourceGroupName \
     --availability-set $AvailabilitySet \
-    --name $DomainController4 \
+    --name $DomainCertAuthority \
     --size $VMSize \
     --image Win2019Datacenter \
     --admin-username $AdminUsername \
@@ -118,5 +118,5 @@ az vm create \
     --data-disk-sizes-gb $DataDiskSize \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
-    --private-ip-address $DC4IP
+    --private-ip-address $CA01IP
     --no-wait
