@@ -1,2 +1,2 @@
 # AWS
-All AWS related files - CloudFormation, Lambda, bash
+All for all public cloud realted files - CloudFormation, Lambda, Terraform, ARM Templates, Kubernestes, Docker
