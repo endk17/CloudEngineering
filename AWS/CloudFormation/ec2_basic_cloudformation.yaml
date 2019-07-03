@@ -1,0 +1,20 @@
+ AWSTemplateFormatVersion: 2010-09-09
+ Description: Simple EC2 Instance
+ Parameters:
+   InstanceTypeParam:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.large
+    Description: EC2 Instance Type
+ Resources:
+  ExampleInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0bbc25e23a7640b9b
+      KeyName: ec2_cli1
+      InstanceType:
+        Ref: InstanceTypeParam
+ 
