@@ -12,9 +12,11 @@ VNetName=VNet-AzureVMsNrthEU
 VNetAddress=10.10.0.0/16
 SubnetName=Subnet-AzureDCsNrthEU
 SubnetAddress=10.10.10.0/24
+DNSServers=10.10.10.11
 AvailabilitySet=AppNetLab
 VMSize=Standard_B1ms
 DataDiskSize=20
+StorageSKU=StandardSSD_LRS
 AdminUsername=LabAdmin
 AdminPassword=P@ssw0rd2019
 DomainController1=AZDC01
@@ -51,6 +53,7 @@ az network vnet create --name $VNetName \
                        --resource-group $ResourceGroupName \
                        --address-prefixes $VNetAddress \
                        --location $Location \
+                       --dns-servers $DNSServers \
 
 # Create a subnet
 az network vnet subnet create --address-prefix $SubnetAddress \
@@ -74,6 +77,7 @@ az vm create \
     --admin-username $AdminUsername \
     --admin-password $AdminPassword \
     --data-disk-sizes-gb $DataDiskSize \
+    --storage-sku $StorageSKU \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
     --private-ip-address $DC1IP \
@@ -88,6 +92,7 @@ az vm create \
     --admin-username $AdminUsername \
     --admin-password $AdminPassword \
     --data-disk-sizes-gb $DataDiskSize \
+    --storage-sku $StorageSKU \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
     --private-ip-address $DC2IP
@@ -102,6 +107,7 @@ az vm create \
     --admin-username $AdminUsername \
     --admin-password $AdminPassword \
     --data-disk-sizes-gb $DataDiskSize \
+    --storage-sku $StorageSKU \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
     --private-ip-address $ADFS01IP
@@ -116,6 +122,7 @@ az vm create \
     --admin-username $AdminUsername \
     --admin-password $AdminPassword \
     --data-disk-sizes-gb $DataDiskSize \
+    --storage-sku $StorageSKU \
     --data-disk-caching None \
     --nsg $NetworkSecurityGroup \
     --private-ip-address $CA01IP
