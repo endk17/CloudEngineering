@@ -36,3 +36,9 @@ nano html.go
 nano main.go
 
 # const version string = "1.0.0" ====> const version string = "2.0.0"
+
+# Start Deploy
+git add Jenkinsfile html.go main.go
+git commit -m "Version 2.0.0"
+git push origin new-feature
+
