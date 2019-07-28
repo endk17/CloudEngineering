@@ -1,0 +1,28 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    
+    "usEast1bPublic": {
+        "Type": "AWS::EC2::Subnet",
+        "Properties": {
+            "VpcId": {
+                "Ref": "VPC"
+            },
+            "CidrBlock": "10.0.0.0/24",
+            "AvailabilityZone": "eu-west-1b"
+        }
+    },
+    "Nat": {
+        "Type": "AWS::EC2::Instance",
+        "Properties" : {
+            "AvailabilityZone": "eu-west-1b",
+            "DisableApiTermination": "FALSE",
+            "ImageId": "ami-2e1bc047",
+            "InstanceType": "m1.small",
+            "SubnetId": {
+                "Ref": "euWest1bPublic"
+            },
+        "KeyName": "vmware_to_aws_migration",
+        "Monitoring": "false"
+    }
+}
+}
